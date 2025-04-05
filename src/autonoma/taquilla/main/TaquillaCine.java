@@ -19,7 +19,7 @@ import java.util.Scanner;
 
     /**
      * Clase principal para gestionar el sistema de taquilla de cine.
-     * Permite administrar películas, usuarios, funciones y ventas de boletas.
+     * Permite administrar peliculas, usuarios, funciones y ventas de boletas.
      * @author  Juan Jose Cardona Daza
      * @since 20250404
      * @version 1.0
@@ -36,13 +36,13 @@ public class TaquillaCine {
         do {
             mostrarMenu();
             opcion = teclado.nextInt();
-            teclado.nextLine(); // Limpiar buffer
+            teclado.nextLine();
             procesarOpcion(opcion);
         } while (opcion != 8);
     }
 
     /**
-     * Muestra el menú principal al usuario.
+     * Muestra el menu principal al usuario.
      */
     private static void mostrarMenu() {
         System.out.println("Bienvenido a la gestión del cine");
@@ -86,6 +86,133 @@ public class TaquillaCine {
             System.out.println("Película agregada con éxito.");
         } else {
             System.out.println("La película ya está en cartelera.");
+        }
+    }
+    private static void mostrarPeliculas() {
+        ArrayList<Pelicula> peliculas = cartelera.getPeliculas();
+        if (peliculas.isEmpty()) {
+            System.out.println("No hay películas disponibles.");
+        } else {
+            System.out.println("Películas disponibles:");
+            for (Pelicula pelicula : peliculas) {
+                System.out.println("Nombre: " + pelicula.getNombre());
+                System.out.println("Costo base: " + pelicula.getCostoBase());
+            }
+        }
+    }
+
+    /**
+     * @author Alejandro
+     * @since 20250404
+     * @version 1.0
+     */
+
+
+    private static void registrarUsuario() {
+        System.out.print("Ingrese su ID: ");
+        String id = teclado.nextLine();
+        System.out.println("Seleccione el tipo de usuario:");
+        System.out.println("1) Niño  2) Adulto  3) Mayor");
+        int tipoUsuario = teclado.nextInt();
+
+        switch (tipoUsuario) {
+            case 1 -> usuarioActual = new UsuarioNino(id);
+            case 2 -> usuarioActual = new UsuarioAdulto(id);
+            case 3 -> usuarioActual = new UsuarioMayor(id);
+            default -> {
+                System.out.println("Tipo de usuario inválido.");
+                return;
+            }
+        }
+
+        if (cine.agregarUsuario(usuarioActual)) {
+            System.out.println("Usuario registrado con éxito.");
+        } else {
+            System.out.println("El usuario ya está registrado.");
+        }
+    }
+
+    private static void mostrarUsuarios() {
+        ArrayList<Usuario> usuarios = cine.getUsuarios();
+        if (usuarios.isEmpty()) {
+            System.out.println("No hay usuarios registrados.");
+        } else {
+            System.out.println("Usuarios registrados:");
+            for (Usuario usuario : usuarios) {
+                System.out.println("ID: " + usuario.getId());
+                System.out.println("Tipo: " + usuario.getTipoUsuario());
+                System.out.println("Descuento: " + usuario.getValorDescuento());
+            }
+        }
+    }
+
+    private static void venderBoleta() {
+        if (cartelera.getPeliculas().isEmpty()) {
+            System.out.println("No hay películas disponibles.");
+            return;
+        }
+        if (usuarioActual == null) {
+            System.out.println("Debe registrar un usuario antes de vender una boleta.");
+            return;
+        }
+
+        System.out.print("Ingrese el nombre de la película: ");
+        String nombrePelicula = teclado.nextLine();
+        Pelicula pelicula = cartelera.obtenerPelicula(nombrePelicula);
+
+        if (pelicula == null) {
+            System.out.println("Película no encontrada.");
+            return;
+        }
+
+        System.out.println("Seleccione la función:");
+        System.out.println("1) Primera función  2) Función tarde  3) Función noche");
+        int tipoFuncion = teclado.nextInt();
+        teclado.nextLine();
+
+        Funcion funcion = switch (tipoFuncion) {
+            case 1 -> new PrimeraFuncion(pelicula);
+            case 2 -> new FuncionTarde(pelicula);
+            case 3 -> new FuncionNoche(pelicula);
+            default -> {
+                System.out.println("Opción inválida.");
+                yield null;
+            }
+        };
+
+        if (funcion != null) {
+            try {
+                Boleta boleta = cine.venderBoleta(pelicula, funcion, usuarioActual);
+                System.out.println("Boleta generada con éxito.");
+            } catch (PrecioFinalInvalidoException e) {
+                System.out.println("Error al generar la boleta: " + e.getMessage());
+            }
+        }
+    }
+
+    private static void generarFacturas() {
+        ArrayList<Factura> facturas = cine.getFacturas();
+        if (facturas.isEmpty()) {
+            System.out.println("No hay facturas generadas.");
+        } else {
+            for (int i = 0; i < facturas.size(); i++) {
+                System.out.println("Factura " + (i + 1) + ":");
+                System.out.println(facturas.get(i).generarFactura());
+            }
+        }
+    }
+
+    private static void eliminarPelicula() {
+        System.out.print("Ingrese el nombre de la película a eliminar: ");
+        String nombre = teclado.nextLine();
+        System.out.print("Ingrese el costo base de la película: ");
+        double costoBase = teclado.nextDouble();
+
+        Pelicula pelicula = new Pelicula(nombre, costoBase);
+        if (cine.getCartelera().eliminarPelicula(pelicula)) {
+            System.out.println("Película eliminada con éxito.");
+        } else {
+            System.out.println("La película no se encontró en la cartelera.");
         }
     }
 }
