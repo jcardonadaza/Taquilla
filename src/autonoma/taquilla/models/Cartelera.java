@@ -2,10 +2,11 @@ package autonoma.taquilla.models;
 
 import java.util.ArrayList;
 
-/**
- * Clase que representa una cartelera de cine.
- * Gestiona las peliculas disponibles, permitiendo agregarlas, eliminarlas, buscarlas y actualizarlas.
- */
+ /**
+     * @author  Juan Jose Cardona Daza
+     * @since 20250404
+     * @version 1.0
+     */
 public class Cartelera {
 
     // Atributos

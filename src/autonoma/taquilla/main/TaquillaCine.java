@@ -17,13 +17,13 @@ import autonoma.taquillaCine.models.UsuarioNino;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Clase principal para gestionar el sistema de taquilla de cine.
- * Permite administrar películas, usuarios, funciones y ventas de boletas.
- * @author 
- * @since 20250404
- * @version 1.1
- */
+    /**
+     * Clase principal para gestionar el sistema de taquilla de cine.
+     * Permite administrar películas, usuarios, funciones y ventas de boletas.
+     * @author  Juan Jose Cardona Daza
+     * @since 20250404
+     * @version 1.0
+     */
 public class TaquillaCine {
 
     private static final Scanner teclado = new Scanner(System.in);

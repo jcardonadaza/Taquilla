@@ -2,10 +2,12 @@ package autonoma.taquilla.models;
 
 import autonoma.taquillaCine.exceptions.PrecioFinalInvalidoException;
 
-/**
- * Clase que representa una boleta de cine, asociada a una pelicula, funcion y usuario.
- * Permite calcular el precio total aplicando descuentos segun el tipo de usuario y funcion.
- */
+
+    /**
+     * @author  Juan Jose Cardona Daza
+     * @since 20250404
+     * @version 1.0
+     */
 public class Boleta {
 
     // Atributos privados
