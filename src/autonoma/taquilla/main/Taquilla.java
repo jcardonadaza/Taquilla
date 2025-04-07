@@ -1,30 +1,27 @@
 package autonoma.taquilla.main;
 
-import autonoma.taquillaCine.exceptions.PrecioFinalInvalidoException;
-import autonoma.taquillaCine.models.Boleta;
-import autonoma.taquillaCine.models.Cartelera;
-import autonoma.taquillaCine.models.Cine;
-import autonoma.taquillaCine.models.Factura;
-import autonoma.taquillaCine.models.Funcion;
-import autonoma.taquillaCine.models.FuncionNoche;
-import autonoma.taquillaCine.models.FuncionTarde;
-import autonoma.taquillaCine.models.Pelicula;
-import autonoma.taquillaCine.models.PrimeraFuncion;
-import autonoma.taquillaCine.models.Usuario;
-import autonoma.taquillaCine.models.UsuarioAdulto;
-import autonoma.taquillaCine.models.UsuarioMayor;
-import autonoma.taquillaCine.models.UsuarioNino;
+import autonoma.taquilla.exceptions.PrecioFinalInvalidoException;
+import autonoma.taquilla.modelos.Boleta;
+import autonoma.taquilla.modelos.Cartelera;
+import autonoma.taquilla.modelos.Cine;
+import autonoma.taquilla.modelos.Factura;
+import autonoma.taquilla.modelos.Funcion;
+import autonoma.taquilla.modelos.FuncionNoche;
+import autonoma.taquilla.modelos.FuncionTarde;
+import autonoma.taquilla.modelos.Pelicula;
+import autonoma.taquilla.modelos.PrimeraFuncion;
+import autonoma.taquilla.modelos.Usuario;
+import autonoma.taquilla.modelos.UsuarioAdulto;
+import autonoma.taquilla.modelos.UsuarioMayor;
+import autonoma.taquilla.modelos.UsuarioNino;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-    /**
-     * Clase principal para gestionar el sistema de taquilla de cine.
-     * Permite administrar peliculas, usuarios, funciones y ventas de boletas.
-     * @author  Juan Jose Cardona Daza
-     * @since 20250404
-     * @version 1.0
-     */
-public class TaquillaCine {
+/**
+ * Clase principal para gestionar el sistema de taquilla de cine.
+ * Permite administrar películas, usuarios, funciones y ventas de boletas.
+ */
+public class Taquilla {
 
     private static final Scanner teclado = new Scanner(System.in);
     private static final Cartelera cartelera = new Cartelera();
@@ -36,13 +33,13 @@ public class TaquillaCine {
         do {
             mostrarMenu();
             opcion = teclado.nextInt();
-            teclado.nextLine();
+            teclado.nextLine(); // Consumir el carácter de nueva línea después de nextInt()
             procesarOpcion(opcion);
         } while (opcion != 8);
     }
 
     /**
-     * Muestra el menu principal al usuario.
+     * Muestra el menú principal al usuario.
      */
     private static void mostrarMenu() {
         System.out.println("Bienvenido a la gestión del cine");
@@ -80,6 +77,7 @@ public class TaquillaCine {
         String nombre = teclado.nextLine();
         System.out.print("Ingrese el costo base de la película: ");
         double costoBase = teclado.nextDouble();
+        teclado.nextLine(); // Consumir el carácter de nueva línea después de nextDouble()
         Pelicula nuevaPelicula = new Pelicula(nombre, costoBase);
 
         if (cine.gestionarPeliculas(nuevaPelicula)) {
@@ -88,6 +86,7 @@ public class TaquillaCine {
             System.out.println("La película ya está en cartelera.");
         }
     }
+
     private static void mostrarPeliculas() {
         ArrayList<Pelicula> peliculas = cartelera.getPeliculas();
         if (peliculas.isEmpty()) {
@@ -101,19 +100,13 @@ public class TaquillaCine {
         }
     }
 
-    /**
-     * @author Alejandro
-     * @since 20250404
-     * @version 1.0
-     */
-
-
     private static void registrarUsuario() {
         System.out.print("Ingrese su ID: ");
         String id = teclado.nextLine();
         System.out.println("Seleccione el tipo de usuario:");
         System.out.println("1) Niño  2) Adulto  3) Mayor");
         int tipoUsuario = teclado.nextInt();
+        teclado.nextLine(); // Consumir el carácter de nueva línea después de nextInt()
 
         switch (tipoUsuario) {
             case 1 -> usuarioActual = new UsuarioNino(id);
@@ -168,7 +161,7 @@ public class TaquillaCine {
         System.out.println("Seleccione la función:");
         System.out.println("1) Primera función  2) Función tarde  3) Función noche");
         int tipoFuncion = teclado.nextInt();
-        teclado.nextLine();
+        teclado.nextLine(); // Consumir el carácter de nueva línea después de nextInt()
 
         Funcion funcion = switch (tipoFuncion) {
             case 1 -> new PrimeraFuncion(pelicula);
@@ -207,6 +200,7 @@ public class TaquillaCine {
         String nombre = teclado.nextLine();
         System.out.print("Ingrese el costo base de la película: ");
         double costoBase = teclado.nextDouble();
+        teclado.nextLine(); // Consumir el carácter de nueva línea después de nextDouble()
 
         Pelicula pelicula = new Pelicula(nombre, costoBase);
         if (cine.getCartelera().eliminarPelicula(pelicula)) {

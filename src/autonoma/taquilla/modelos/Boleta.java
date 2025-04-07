@@ -1,13 +1,14 @@
 package autonoma.taquilla.modelos;
 
-import autonoma.taquillaCine.exceptions.PrecioFinalInvalidoException;
+import autonoma.taquilla.exceptions.PrecioFinalInvalidoException;
 
-
-    /**
-     * @author  Juan Jose Cardona Daza
-     * @since 20250404
-     * @version 1.0
-     */
+/**
+ * Clase que representa una boleta de cine.
+ * Contiene los atributos y métodos necesarios para gestionar la información de una boleta.
+ * @author  Juan Jose Cardona Daza
+ * @since 20250404
+ * @version 1.0
+ */
 public class Boleta {
 
     // Atributos privados
@@ -30,12 +31,10 @@ public class Boleta {
     }
 
     /**
-     * Calcula el precio total de la boleta aplicando descuentos segun el usuario y la funcion.
+     * Calcula el precio total de la boleta aplicando descuentos según el usuario y la función.
      * @return Precio total calculado.
      * @throws PrecioFinalInvalidoException Si el precio calculado es negativo.
-     *
-    */
-
+     */
     public double calcularPrecioTotal() throws PrecioFinalInvalidoException {
         this.precioTotal = usuario.aplicarDescuento(pelicula.getCostoBase(), funcion);
         if (precioTotal < 0) {
@@ -44,35 +43,35 @@ public class Boleta {
         return precioTotal;
     }
 
-    // Metodos Getters y Setters
+    // Métodos Getters y Setters
 
     /**
-     * Obtiene la pelicula asociada a la boleta.
-     * @return Pelicula seleccionada.
+     * Obtiene la película asociada a la boleta.
+     * @return Película seleccionada.
      */
     public Pelicula getPelicula() {
         return pelicula;
     }
 
     /**
-     * Establece una nueva pelicula para la boleta.
-     * @param pelicula Pelicula a asociar.
+     * Establece una nueva película para la boleta.
+     * @param pelicula Película a asociar.
      */
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
     }
 
     /**
-     * Obtiene la funcion asociada a la boleta.
-     * @return Funcion seleccionada.
+     * Obtiene la función asociada a la boleta.
+     * @return Función seleccionada.
      */
     public Funcion getFuncion() {
         return funcion;
     }
 
     /**
-     * Establece una nueva funcion para la boleta.
-     * @param funcion Funcion a asociar.
+     * Establece una nueva función para la boleta.
+     * @param funcion Función a asociar.
      */
     public void setFuncion(Funcion funcion) {
         this.funcion = funcion;

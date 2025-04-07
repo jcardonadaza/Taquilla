@@ -1,3 +1,4 @@
+// no necesitas importar si está en el mismo paquete
 package autonoma.taquilla.modelos;
 
 /**
