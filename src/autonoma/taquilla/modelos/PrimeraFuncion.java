@@ -1,4 +1,4 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.model0s;
 
 /**
  * Clase que representa una funcion de cine en el horario de la primera funcion.

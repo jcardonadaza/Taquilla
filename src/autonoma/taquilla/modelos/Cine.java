@@ -1,14 +1,15 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.modelos;
 
 
 import autonoma.taquilla.exceptions.PrecioFinalInvalidoException;
 import java.util.ArrayList;
 
-/**
- * Clase que representa un cine.
- * Gestiona la cartelera, los usuarios, las facturas y las ventas de boletas.
- * Proporciona metodos para administrar peliculas, usuarios y generar facturas.
- */
+ /**
+     * @author  Juan Jose Cardona Daza
+     * @since 20250404
+     * @version 1.0
+     */
+
 public class Cine {
 
     // Atributos

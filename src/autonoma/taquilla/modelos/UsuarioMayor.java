@@ -1,4 +1,4 @@
-package autonoma.taquillaCine.models;
+package autonoma.taquilla.modelos;
 
 /**
  * Modelo que permite representar un descuento si es un usuario mayor.

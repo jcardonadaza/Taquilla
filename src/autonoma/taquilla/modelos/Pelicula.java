@@ -1,4 +1,4 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.modelos;
 
 /**
  * Clase que representa una pelicula.

@@ -1,4 +1,4 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.modelos;
 
 /**
  * Modelo que permite representar un usuario.

@@ -1,4 +1,4 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.modelos;
 /**
  * Clase que representa una funcion de cine en horario nocturno.
  * Extiende la clase abstracta Funcion y define el calculo del descuento especifico para esta funcion.

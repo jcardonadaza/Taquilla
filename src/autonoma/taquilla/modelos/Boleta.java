@@ -1,4 +1,4 @@
-package autonoma.taquilla.models;
+package autonoma.taquilla.modelos;
 
 import autonoma.taquillaCine.exceptions.PrecioFinalInvalidoException;
 
